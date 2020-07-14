@@ -1,0 +1,31 @@
+import argparse
+
+parser = argparse.ArgumentParser(description='AIM-2020')
+
+parser.add_argument('--data_dir', type=str, default='/root/proj/AIM2020/dataset/', help='dataset directory')
+parser.add_argument('--data_train', type=str, default='DIV2K_Npy', help='train dataset name')
+parser.add_argument('--data_test', type=str, default='./dataset/DIV2K/Val/', help='test dataset name')
+parser.add_argument('--data_range', type=str, default='1-10', help='val dataset range')
+parser.add_argument('--upscaling_factor', type=int, default=4, help='upsampling factor')
+parser.add_argument('--patch_size', type=int, default=64, help='input patch size')
+parser.add_argument('--batch_size', type=int, default=16, help='input batch size for training')
+parser.add_argument('--n_gpus', type=int, default=1, help='number of GPUs')
+parser.add_argument('--n_threads', type=int, default=16, help='number of threads for data loading') 
+parser.add_argument('--gpu_mode', type=bool, default=True, help='use GPU')
+parser.add_argument('--agu_flag', type=bool, default=True, help='Data agumentation')
+parser.add_argument('--crop_flag', type=bool, default=True, help='Random crop')
+parser.add_argument('--test_every', type=int, default=1000, help='do test per every N batches')
+parser.add_argument('--total_epochs', type=int, default=500, help='total epochs')
+parser.add_argument('--start_epoch', type=int, default=1, help='start epoch for training')
+parser.add_argument('--lr', type=float, default=1e-4, help='learning rate')
+parser.add_argument('--weight_decay', type=float, default=0.5, help='learning rate decay factor for step decay')
+parser.add_argument('--decay_step', type=int, default=200, help='learning rate decay factor')
+parser.add_argument('--calc_y', type=bool, default=False, help='Calculating the psnr value on Y channel')
+
+parser.add_argument('--log_dir', type=str, default='./log/', help='log directory')
+parser.add_argument('--resume', type=bool, default=False)
+parser.add_argument('--resume_dir', type=str, default='./weights/X4/model_001_epoch.pth')
+parser.add_argument('--snapshot_dir', type=str, default='./weights/')
+parser.add_argument('--result_save_dir', type=str, default='./results/val_results/')
+
+opt = parser.parse_args()
